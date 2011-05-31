@@ -11,7 +11,11 @@ class Settings extends CI_Controller {
     {
         if($this->input->post('password') === '37182')
         {
-            $this->load->view('settingsform'); 
+            $this->load->model('Settings_model');
+            
+            $data['settings'] = $this->Settings_model->getsettings_model();
+            
+            $this->load->view('settingsform', $data); 
         } else{
             $this->auth();
         }
@@ -34,7 +38,7 @@ class Settings extends CI_Controller {
         $portrait    = $input->post('portrait');
         
         $this->Settings_model->settingsupdate_model($titleprefix, $twitter, $portrait);
-        echo "Settings updated!";
+        echo "Settings updated!<script>history.go(-1);</script>";
     }
     
 }

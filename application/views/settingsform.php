@@ -1,8 +1,57 @@
+<?php 
+foreach ($settings as $setting)
+    $titleprefix2 = $setting->titleprefix;
+    $twitter     = $setting->twitter;
+    $portrait    = $setting->portrait;
+    
+$titleprefix = form_input(
+    array(
+        'value' => form_prep($titleprefix2), 
+        'name' => 'titleprefix', 
+        'maxlength' => '255', 
+        'placeholder' => 'Page Title prefix...'
+        )
+);
+$twitter = form_input(
+    array(
+        'value' => form_prep($twitter), 
+        'name' => 'twitter', 
+        'placeholder' => 
+        'Twitter Username...'
+        )
+);
+$portrait = form_input(
+    array(
+        'value' => form_prep($portrait), 
+        'name' => 'portrait', 
+        'placeholder' => 'URL to Personal Photo'
+        )
+);
+$thumb = form_input(
+    array(
+        'name' => 'thumb', 
+        'placeholder' => 'Thumbnail URL...'
+        )
+);
+$description = form_textarea(
+    array(
+        'name' => 'description', 
+        'placeholder' => 'Description...'
+        )
+);
+$submit = form_submit(
+    array(
+        'name' => 'submit', 
+        'value' => 'Submit'
+        )
+);
+$form = array($titleprefix, $twitter, $portrait, $thumb, $description, $submit);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+	<title><?=$titleprefix2;?> Portfolio Settings</title>
     <style type="text/css">
         body{
         background:#eee;
@@ -83,22 +132,9 @@
     <li><label for="thumb">Thumbnail::.</label></li>
     <li><label for="description">Description::.</label></li>
 </ul>
+
 <?php
 echo form_open('settings/settingsupdate');
-
-$titleprefix = form_input(array('name' => 'titleprefix', 'maxlength'   => '255', 'placeholder' => 'Page Title prefix...'));
-
-$twitter = form_input(array('name' => 'twitter', 'placeholder' => 'Twitter Username...'));
-
-$portrait = form_input(array('name' => 'portrait', 'placeholder' => 'URL to Personal Photo'));
-
-$thumb = form_input(array('name' => 'thumb', 'placeholder' => 'Thumbnail URL...'));
-
-$description = form_textarea(array('name' => 'description', 'placeholder' => 'Description...'));
-
-$submit = form_submit(array('name' => 'submit', 'value' => 'Submit'));
-
-$form = array($titleprefix, $twitter, $portrait, $thumb, $description, $submit);
 
 echo '<ul id="fields">';
 
