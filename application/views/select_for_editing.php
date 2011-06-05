@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+	<title>Edit Portfolio Items</title>
     <style type="text/css">
         body{
         background:#eee;
@@ -70,47 +70,25 @@
         height:38px;
         display:block;
         }
+ td{border:1px solid #111; padding:2px;}
+td a{color:#444; display:block; text-decoration:none; border-bottom:1px solid;}
     </style>
 </head>
 <body>
 <div id="form">
-<h1>Add Portfolio Item</h1>
+<h1>Edit Portfolio Items</h1>
 
-<ul id="labels">
-    <li><label for="title">Title::.</label></li>
-    <li><label for="category">Category::.</label></li>
-    <li><label for="image">Image::.</label></li>
-    <li><label for="thumb">Thumbnail::.</label></li>
-    <li><label for="description">Description::.</label></li>
-</ul>
 <?php
-echo form_open('admin/add');
-
-$title = form_input(array('name' => 'title', 'maxlength'   => '140', 'placeholder' => 'Title...'));
-
-$category = form_input(array('name' => 'category', 'placeholder' => 'Category...'));
-
-$image = form_input(array('name' => 'image', 'placeholder' => 'Image URL...'));
-
-$thumb = form_input(array('name' => 'thumb', 'placeholder' => 'Thumbnail URL...'));
-
-$description = form_textarea(array('name' => 'description', 'placeholder' => 'Description...'));
-
-$submit = form_submit(array('name' => 'submit', 'value' => 'Submit'));
-
-$form = array($title, $category, $image, $thumb, $description, $submit);
-
-echo '<ul id="fields">';
-
-foreach($form as $field)
-{
-    echo '<li>';
-    echo $field ."\r\n";
-    echo '</li>';    
-}
-
-echo '</ul>';
-?>
+echo form_open('admin/perfEdit');?>
+<table>
+<?php foreach($result as $row):?>
+    <tr>
+        <td><a href="./edit/<?=$row->id;?>"><img src="/phpmyadmin/themes/original/img/b_edit.png" /></a></td>
+        <td><a href="#" title=""><?=$row->title;?></a> [<?=character_limiter(form_prep($row->description), 65);?>]</td>
+    </tr>
+<? endforeach;?>
+</table>
+<input type="submit" name="submit" value="Delete Checked" />
 </form>
 <div class="clear"></div>
 </div>

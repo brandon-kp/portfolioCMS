@@ -1,8 +1,21 @@
+
+<?php
+
+foreach($result as $row)
+{
+    $title2       = $row->title;
+    $category2    = $row->category;
+    $image2       = $row->image;
+    $thumb2       = $row->thumbnail;
+    $description2 = $row->description;
+    $id2          = $row->id;   
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+	<title>Edit Portfolio Item: <?=$title2;?></title>
     <style type="text/css">
         body{
         background:#eee;
@@ -74,7 +87,7 @@
 </head>
 <body>
 <div id="form">
-<h1>Add Portfolio Item</h1>
+<h1>Edit Portfolio Item</h1>
 
 <ul id="labels">
     <li><label for="title">Title::.</label></li>
@@ -84,19 +97,55 @@
     <li><label for="description">Description::.</label></li>
 </ul>
 <?php
-echo form_open('admin/add');
+echo form_open('admin/perfEdit/'.$id);
 
-$title = form_input(array('name' => 'title', 'maxlength'   => '140', 'placeholder' => 'Title...'));
+$title = form_input(
+        array(
+            'value' => form_prep($title2), 
+            'name' => 'title', 
+            'maxlength' => '140', 
+            'placeholder' => 'Title...'
+        )
+);
 
-$category = form_input(array('name' => 'category', 'placeholder' => 'Category...'));
+$category = form_input(
+        array(
+            'value' => form_prep($category2), 
+            'name' => 'category', 
+            'placeholder' => 'Category...'
+        )
+);
 
-$image = form_input(array('name' => 'image', 'placeholder' => 'Image URL...'));
+$image = form_input(
+        array(
+            'value' => form_prep($image2), 
+            'name' => 'image', 
+            'placeholder' => 'Image URL...'
+        )
+);
 
-$thumb = form_input(array('name' => 'thumb', 'placeholder' => 'Thumbnail URL...'));
+$thumb = form_input(
+        array(
+            'value' => form_prep($thumb2), 
+            'name' => 'thumb', 
+            'placeholder' => 'Thumbnail URL...'
+        )
+);
 
-$description = form_textarea(array('name' => 'description', 'placeholder' => 'Description...'));
+$description = form_textarea(
+        array(
+            'value' => form_prep($description2), 
+            'name' => 'description', 
+            'placeholder' => 'Description...'
+        )
+);
 
-$submit = form_submit(array('name' => 'submit', 'value' => 'Submit'));
+$submit = form_submit(
+        array(
+            'name' => 'submit', 
+            'value' => 'Submit'
+        )
+);
 
 $form = array($title, $category, $image, $thumb, $description, $submit);
 

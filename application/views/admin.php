@@ -27,5 +27,7 @@ color:#ddd;
 
     <a class="setting" href="/portfoliocms/index.php/settings/settingsform">Portfolio Settings</a>
     <a class="setting" href="/portfoliocms/index.php/additem/">Add Portfolio Item</a>
+    <a class="setting" href="/portfoliocms/index.php/delete/">Delete portfolio Items</a>
+    <a class="setting" href="/portfoliocms/index.php/admin/edit/">Edit Portfolio Items</a>
 
 </div>
