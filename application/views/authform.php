@@ -70,6 +70,13 @@
         height:38px;
         display:block;
         }
+        h2.err{
+        font-size:12px;
+        padding:5px;
+        text-align:center;
+        background:#ff3333;
+        border:1px solid #aa0000;
+        }
     </style>
 </head>
 <body>
@@ -77,16 +84,19 @@
 <h1>Authorization</h1>
 
 <ul id="labels">
-    <li><label for="password">Password::.</label></li>
+	<li><label for="login_username">Username::.</label></li>
+    <li><label for="login_password">Password::.</label></li>
 </ul>
 <?php
-echo form_open('additem/addform');
+echo form_open(site_url('/admin/login/'));
 
-$title = form_password(array('name' => 'password', 'placeholder' => 'Password...'));
+$username = form_input(array('name' => 'login_username', 'placeholder' => 'Username...'));
 
-$submit = form_submit(array('name' => 'submit', 'value' => 'Submit'));
+$title 	  = form_password(array('name' => 'login_password', 'placeholder' => 'Password...'));
 
-$form = array($title, $submit);
+$submit	  = form_submit(array('name' => 'login', 'value' => 'Submit'));
+
+$form = array($username, $title, $submit);
 
 echo '<ul id="fields">';
 

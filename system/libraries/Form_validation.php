@@ -60,7 +60,39 @@ class CI_Form_validation {
 	}
 
 	// --------------------------------------------------------------------
-
+    function set_fields($data = '', $field = '')
+	    {  
+	        if ($data == '')
+        {
+	            if (count($this->_fields) == 0)
+	            {
+	                return FALSE;
+	            }
+	        }
+	        else
+	        {
+	            if ( ! is_array($data))
+	            {
+	                $data = array($data => $field);
+	            }
+	             
+	            if (count($data) > 0)
+	            {
+	                $this->_fields = $data;
+	            }
+	        }      
+	             
+	        foreach($this->_fields as $key => $val)
+	        {
+	            $this->$key = ( ! isset($_POST[$key])) ? '' : $this->prep_for_form($_POST[$key]);
+	             
+	            $error = $key.'_error';
+	            if ( ! isset($this->$error))
+	            {
+	                $this->$error = '';
+	            }
+	        }      
+	    }
 	/**
 	 * Set Rules
 	 *
